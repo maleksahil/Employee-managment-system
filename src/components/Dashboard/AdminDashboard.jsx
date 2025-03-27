@@ -3,7 +3,7 @@ import Header from "../other/Header";
 import CreateTask from "../other/CreateTask";
 import AllTask from "../other/AllTask";
 
-const AdminDashboard = () => {
+const AdminDashboard = (props) => {
 
   const name = localStorage.getItem('admin')
 
@@ -14,7 +14,7 @@ const data = JSON.parse(name)
 
   return (
     <div className="h-screen w-full p-10 ">
-      <Header data={data}/>
+      <Header changeUser={props.changeUser} data={data}/>
       <CreateTask/>
       <AllTask/>
     </div>

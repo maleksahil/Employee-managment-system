@@ -37,7 +37,7 @@ const App = () => {
   return (
     <>
       {!user ? <Login handleLogin={handleLogin} /> : null}
-      {user?.role === 'admin' ? <AdminDashboard /> : user?.role === 'employee' ? <EmployeeDashboard  data={loggedInUserData}/> : null}
+      {user?.role === 'admin' ? <AdminDashboard changeUser={setUser} /> : user?.role === 'employee' ? <EmployeeDashboard changeUser={setUser}  data={loggedInUserData}/> : null}
     </>
   );
 };

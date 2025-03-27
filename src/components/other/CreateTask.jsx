@@ -1,13 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const CreateTask = () => {
+
+  const [taskTitle, setTaskTitle] = useState('')
+  const [taskDescription,setTaskDescription] = useState('')
+  const [taskDate, setTaskDate] = useState('')
+  const [asignTo, setAsignTo] = useState('')
+  const [category, setCategory] = useState('')
+
+  const [task, setTask] = useState({})
+
+  const submitHandler = (e) =>{
+    e.preventDefault()
+
+    setTask({taskTitle, taskDate, taskDescription, category, asignTo, active:false, newTask:true, failed:false, completed:false,})
+
+    const data = JSON.parse(localStorage.getItem('employees'))
+
+    data.forEach(function(){
+       console.log('hello')
+    });
+
+    // setTaskDate(":")
+    // setTaskDescription("")
+    // setTaskTitle("")
+    // setAsignTo("")
+    // setCategory("")
+
+  }
+
   return (
     <div className="w-full bg-[#1c1c1c] mb-5 mx-auto p-6 text-white rounded-lg mt-10 ">
-      <form className="flex flex-col md:flex-row gap-10">
+      <form onSubmit={(e)=>submitHandler(e)} className="flex flex-col md:flex-row gap-10">
         <div className="w-full md:w-1/2 space-y-4">
           <div>
             <label className="block font-medium mb-3">Task Title</label>
             <input
+            value={taskTitle}
+            onChange={(e)=>{setTaskTitle(e.target.value)}}
               type="text"
               placeholder="Make a UI design"
               className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300"
@@ -16,6 +46,8 @@ const CreateTask = () => {
           <div>
             <label className="block font-medium mb-3">Date</label>
             <input
+            value={taskDate}
+            onChange={(e)=>setTaskDate(e.target.value)}
               type="date"
               className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300"
             />
@@ -23,6 +55,8 @@ const CreateTask = () => {
           <div>
             <label className="block font-medium mb-3">Assign to</label>
             <input
+            value={asignTo}
+            onChange={(e)=>setAsignTo(e.target.value)}
               type="text"
               placeholder="Employee name"
               className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300"
@@ -31,6 +65,8 @@ const CreateTask = () => {
           <div>
             <label className="block font-medium mb-3">Category</label>
             <input
+            value={category}
+            onChange={(e)=>setCategory(e.target.value)}
               type="text"
               placeholder="Design, Dev, etc."
               className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300"
@@ -41,6 +77,8 @@ const CreateTask = () => {
           <div>
             <label className="block font-medium mb-3">Description</label>
             <textarea
+            value={taskDescription}
+            onChange={(e)=>setTaskDescription(e.target.value)}
               cols="30"
               rows="6"
               className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300"
