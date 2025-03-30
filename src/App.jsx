@@ -7,7 +7,7 @@ import { AuthContext } from './context/AuthProvider';
 const App = () => {
   const [user, setUser] = useState(null);
   const [loggedInUserData, setLoggedInUserData] = useState(null)
-  const authData = useContext(AuthContext);
+  const [userData,setuserData] = useContext(AuthContext);
 
   // Retrieve logged-in user from localStorage on page refresh
   
@@ -17,8 +17,8 @@ const App = () => {
       const adminUser = { role: 'admin' };
       setUser(adminUser);
       localStorage.setItem('loggedInUser', JSON.stringify(adminUser));
-    } else if (authData) {
-      const employee = authData.employees.find((e) => e.email === email && e.password === password);
+    } else if (userData) {
+      const employee = userData.find((e) => e.email === email && e.password === password);
       if (employee) {
         const employeeUser = { role: 'employee' };
         setUser(employeeUser);
